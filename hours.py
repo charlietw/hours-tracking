@@ -5,6 +5,8 @@ import datetime
 # for envvars
 import os
 
+import argparse
+
 from functions import *
 
 # Setting up gspread (see https://gspread.readthedocs.io/en/latest/)
@@ -21,6 +23,7 @@ hrs_sheet = gc.open(os.environ['HOURS_SHEET_NAME']).sheet1
 #TODO: Merge 'current_row' and 'last_reported_row' functions
 #TODO: Fix bug when there is only one entry in a month
 #TODO: Tidy 'month end' process i.e. updating the reported date
+
 
 
 def menu():
@@ -51,4 +54,22 @@ def menu():
         email_hours(hrs_sheet)
         menu()
 
-menu()
+# Adding CLI args
+parser = argparse.ArgumentParser()
+
+parser.add_argument(
+    "-i", "--interactive",
+    help="run the interactive CLI",
+    action="store_true")
+
+parser.add_argument(
+    "--email",
+    help="send the hours you have recorded in the month",
+    action="store_true")
+args = parser.parse_args()
+
+if args.interactive:
+    menu()
+
+if args.email:
+    email_hours(hrs_sheet)

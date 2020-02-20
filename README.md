@@ -28,10 +28,20 @@ This relies heavily on the excellent [gspread](https://gspread.readthedocs.io/en
   HOURS_EMAIL_ADDRESS=\<<your gmail address>>
   HOURS_EMAIL_PASSWORD=\<<your gmail password>>
   ```
-  
+
 6. Install requirements.txt (```python pip install requirements.txt ```), setting up an venv if you prefer.
 
 7. Change directory to the location of the code and run it! (``` python hours.py```).
+
+### Usage
+
+Run ``` python hours.py --help``` for a full list of arguments.
+
+Some common use cases:
+
+``` python hours.py --interactive``` (or ``` python hours.py -i```) will run an interactive CLI, providing you with menu options to select.
+
+``` python hours.py --email``` will run the email function, sending the hours you have recorded in the month to the specified email address.
 
 
 

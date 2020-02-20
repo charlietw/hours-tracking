@@ -254,3 +254,4 @@ def email_hours(sheet):
             now.strftime("%d/%m/%Y")
             )
         )
+    print("Email sent.")
