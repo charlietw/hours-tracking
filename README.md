@@ -23,25 +23,28 @@ This relies heavily on the excellent [gspread](https://gspread.readthedocs.io/en
 
 5. Create the following envvars on your local machine:
 ```
-  HOURS_SHEET_NAME=\<<your sheet name>>
-  HOURS_JSON_CREDENTIALS_DIR=\<<directory of your JSON credentials>>
-  HOURS_EMAIL_ADDRESS=\<<your gmail address>>
-  HOURS_EMAIL_PASSWORD=\<<your gmail password>>
+  HOURS_SHEET_NAME=<<your sheet name>>
+  HOURS_JSON_CREDENTIALS_DIR=<<directory of your JSON credentials>>
+  HOURS_EMAIL_ADDRESS=<<your gmail address>>
+  HOURS_EMAIL_PASSWORD=<<your gmail password>>
   ```
 
-6. Install requirements.txt (```python pip install requirements.txt ```), setting up an venv if you prefer.
+6. Install requirements.txt (```python pip install -r requirements.txt ```), setting up an virtual environment if you prefer.
 
-7. Change directory to the location of the code and run it! (``` python hours.py```).
+7. Change directory to the location of the code and run it! (``` python hours.py --interactive```).
 
 ### Usage
 
-Run ``` python hours.py --help``` for a full list of arguments.
-
 Some common use cases:
 
-``` python hours.py --interactive``` (or ``` python hours.py -i```) will run an interactive CLI, providing you with menu options to select.
+* ``` python hours.py --interactive``` (or ``` python hours.py -i```) will run an interactive CLI, providing you with menu options to select, including:
+    * Adding new rows
+    * Navigating between existing rows and viewing the information stored in them
+    * Getting a summary of hours which have been recorded since you last sent your hours (I send my hours monthly to payroll)
 
-``` python hours.py --email``` will run the email function, sending the hours you have recorded in the month to the specified email address.
+* ``` python hours.py --email``` will run the email function, sending the hours you have recorded in the month to the specified email address.
+
+* Run ``` python hours.py --help``` for a full list of arguments which can be run directly from the command line. I use this to automate the tasks using cron.
 
 
 
