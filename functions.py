@@ -10,6 +10,7 @@ from datetime import datetime
 
 # Helper functions
 
+
 def change_current_row(sheet, new_value):
     """
     Updates the 'current row' value
@@ -132,20 +133,28 @@ def get_hours_report_data(sheet):
     return report_data
 
 
-def get_total_hours(sheet):
+def get_total_hours(sheet, start_row=None, end_row=None):
     """
     Returns the total hours worked from the report range
     """
+    # Can also specify start/end row for specific reporting
+    if start_row == None:
+        start_row = get_last_reported_row(sheet)
+    if end_row == None:
+        end_row = get_current_row(sheet) - 1
+
     report_range = sheet.range(
         "D{0}:D{1}".format(
-            get_last_reported_row(sheet),
-            get_current_row(sheet) - 1
+            start_row,
+            end_row
             )
         )
+
     total_minutes = 0
     for t in report_range:
         total_minutes += int(t.value)
         print(total_minutes)
+
     hours, minutes = minutes_to_hours(total_minutes)
     return hours, minutes
 
@@ -255,3 +264,23 @@ def email_hours(sheet):
             )
         )
     print("Email sent.")
+
+def month_end(hrs_sheet, months_sheet):
+    hours_current_row = get_current_row(hrs_sheet)
+    months_current_row = get_current_row(months_sheet)
+    date = input("Enter the last date of the period you want to report to (format DD/MM/YYYY): \n")
+    date_format = "%d/%m/%Y"
+    date_formatted = datetime.strptime(date, date_format)
+    # Sets up a while loop to iterate through rows until it finds a date later than the input
+    loop_break = True
+    latest_row_checked = hours_current_row
+    while loop_break == True:
+        print("looping...")
+        values_list = hrs_sheet.row_values(hours_current_row)
+        row_date = datetime.strptime(values_list[0], date_format)
+        if row_date > date: # if the row date is more recent than the last date of the period
+            print("broke loop on row {0}".format(values_list[0]))
+            loop_break = False # break the loop
+        else:
+            latest_row_checked += 1 # otherwise carry on
+

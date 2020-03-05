@@ -17,7 +17,7 @@ This app makes use of the excellent [gspread](https://gspread.readthedocs.io/en/
 
 2. Obtain [Oauth2 Google Credentials](https://console.developers.google.com/project), and save the JSON file somewhere memorable.
 
-3. Create a Google Sheet where you want to store your hours.
+3. Create a Google Sheet where you want to store your hours, with one page called "Hours" and one called "Months".
 
 4. Grant the API permission to access your Google Sheet ([tutorial](https://www.dundas.com/support/learning/documentation/connect-to-data/how-to/connecting-to-google-sheets))
 
@@ -36,6 +36,8 @@ This app makes use of the excellent [gspread](https://gspread.readthedocs.io/en/
 ### Usage
 
 Some common use cases:
+
+* ``` python hours.py --setup``` ensures that the worksheet structure is set up correctly and provides instructions if not.
 
 * ``` python hours.py --interactive``` (or ``` python hours.py -i```) will run an interactive CLI, providing you with menu options to select, including:
     * Adding new rows
