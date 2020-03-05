@@ -3,7 +3,7 @@
 ### Purpose
 I created this app to track my hours for a company I work for via a CLI. It will store start time, end time, total hours/minutes worked, reasons for work, and will create a table for you to send to whoever needs it.
 
-This relies heavily on the excellent [gspread](https://gspread.readthedocs.io/en/latest/) library.
+This app makes use of the excellent [gspread](https://gspread.readthedocs.io/en/latest/) library.
 
 
 ### Requirements
