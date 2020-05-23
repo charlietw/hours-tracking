@@ -1,6 +1,3 @@
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-import datetime
 
 # for envvars
 import os
@@ -16,18 +13,8 @@ from functions import *
 #TODO: Tidy 'month end' process i.e. updating the reported date
 
 
-# Setting up gspread (see https://gspread.readthedocs.io/en/latest/)
-scope = ['https://spreadsheets.google.com/feeds',
-         'https://www.googleapis.com/auth/drive']
 
-credentials = ServiceAccountCredentials.from_json_keyfile_name(os.environ['HOURS_JSON_CREDENTIALS_DIR'], scope)
-
-gc = gspread.authorize(credentials)
-
-workbook = gc.open(os.environ['HOURS_SHEET_NAME'])
-worksheet_list = workbook.worksheets()
-hrs_sheet = workbook.worksheet("Hours")
-months_sheet = workbook.worksheet("Months")
+workbook, worksheet_list, hrs_sheet, months_sheet = gspread_setup()
 
 
 def menu():
